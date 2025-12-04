@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Carta para Jatsumi 🐟✨</title>
+
+<style>
+/* ===========================================================
+   VARIABLES BASE
+   =========================================================== */
+:root{
+  --bg-top:#c6f1ff;
+  --bg-mid:#7cc4e8;
+  --bg-deep:#244d7a;
+  --ink-soft:#4A3B47;
+  --accent:#F29BB2;
+  --paper:#FFF9F1;
+  --shine:#FFFFFFAA;
+
+  --fish-orange:#FF9F45;
+  --fish-orange-tail:#FF7A3C;
+
+  --fish-pink:#FF9BCF;
+  --fish-pink-tail:#F56CA8;
+
+  --fish-yellow:#FFE36A;
+  --fish-yellow-tail:#F2C542;
+}
+
+/* Reset */
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+
+/* Fondo principal */
+body{
+  font-family:"Georgia","Times New Roman",serif;
+  color:var(--ink-soft);
+  background:
+    radial-gradient(1300px 800px at 50% -10%,
+      #ffffff 0,
+      var(--bg-top) 28%,
+      var(--bg-mid) 60%,
+      var(--bg-deep) 100%
+    );
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:20px;
+  padding:16px;
+  overflow:hidden;
+  position:relative;
+}
+
+/* -----------------------------------------------------------
+   LUZ DE SOL
+   ----------------------------------------------------------- */
+.sun-rays{
+  position:fixed;
+  inset:0;
+  overflow:hidden;
+  pointer-events:none;
+  z-index:0;
+}
+.sun-rays-inner{
+  position:absolute;
+  left:-10%;
+  top:-40%;
+  width:140%;
+  height:140%;
+  background:
+    linear-gradient(120deg, rgba(255,255,255,.45) 0, transparent 45%),
+    linear-gradient(135deg, rgba(255,255,255,.28) 0, transparent 40%),
+    radial-gradient(circle at 50% 0%, rgba(255,255,255,.6) 0, transparent 65%);
+  mix-blend-mode:screen;
+  opacity:.6;
+  transform-origin:top center;
+  animation:rayDrift 22s ease-in-out infinite alternate;
+}
+@keyframes rayDrift{
+  0%{transform:translate3d(0,0,0) rotate(0deg);opacity:.65}
+  100%{transform:translate3d(0,40px,0) rotate(-3deg);opacity:.4}
+}
+
+/* -----------------------------------------------------------
+   BRILLITOS / SPARKLES
+   ----------------------------------------------------------- */
+.sparkles{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:1;
+}
+.sparkles span{
+  position:absolute;
+  width:6px;height:6px;
+  border-radius:50%;
+  background:var(--shine);
+  box-shadow:0 0 8px rgba(255,255,255,.9);
+  opacity:0.8;
+  animation:twinkle 6s ease-in-out infinite;
+}
+.sparkles span:nth-child(1){top:18%;left:12%;animation-delay:0s}
+.sparkles span:nth-child(2){top:32%;left:76%;animation-delay:1s}
+.sparkles span:nth-child(3){top:52%;left:22%;animation-delay:2s}
+.sparkles span:nth-child(4){top:70%;left:64%;animation-delay:3s}
+.sparkles span:nth-child(5){top:14%;left:54%;animation-delay:1.4s}
+.sparkles span:nth-child(6){top:82%;left:30%;animation-delay:2.7s}
+.sparkles span:nth-child(7){top:60%;left:8%;animation-delay:3.3s}
+.sparkles span:nth-child(8){top:40%;left:90%;animation-delay:4.1s}
+@keyframes twinkle{
+  0%,100%{transform:scale(0.8);opacity:.2}
+  50%{transform:scale(1.3);opacity:.95}
+}
+
+/* -----------------------------------------------------------
+   BURBUJAS
+   ----------------------------------------------------------- */
+.bubbles{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:1;
+}
+.bubbles span{
+  position:absolute;
+  bottom:-10%;
+  width:10px;height:10px;
+  border-radius:50%;
+  border:1px solid rgba(255,255,255,.7);
+  background:radial-gradient(circle at 30% 30%, rgba(255,255,255,.9), transparent 60%);
+  opacity:.65;
+  animation:bubbleUp 16s linear infinite;
+}
+@keyframes bubbleUp{
+  0%{transform:translateY(0);opacity:0}
+  10%{opacity:.7}
+  90%{opacity:.8}
+  100%{transform:translateY(-110vh);opacity:0}
+}
+
+/* -----------------------------------------------------------
+   ALGAS
+   ----------------------------------------------------------- */
+.seaweed{
+  position:fixed;
+  left:0;right:0;bottom:0;
+  height:26vh;
+  z-index:1;
+  display:flex;
+  pointer-events:none;
+  align-items:flex-end;
+  justify-content:space-evenly;
+}
+.seaweed .weed{
+  width:22px;
+  height:110px;
+  background:linear-gradient(180deg,#8ad38c,#2f7b4a);
+  border-radius:999px 999px 0 0;
+  transform-origin:bottom center;
+  animation:weedSway 9s ease-in-out infinite alternate;
+}
+@keyframes weedSway{
+  0%{transform:skewX(0deg)}
+  100%{transform:skewX(6deg)}
+}
+
+/* -----------------------------------------------------------
+   PECES CON FRASES
+   ----------------------------------------------------------- */
+.fishes{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:2;
+}
+
+.fish{
+  position:absolute;
+  width:56px;
+  height:32px;
+}
+
+.fish-inner{
+  position:absolute;
+  inset:0;
+  transform-origin:center;
+}
+
+.fish-body{
+  position:absolute;
+  inset:0;
+  border-radius:999px;
+}
+
+.fish-tail{
+  position:absolute;
+  left:-12px;
+  top:50%;
+  width:20px;height:20px;
+  clip-path:polygon(0 0,100% 50%,0 100%);
+  transform:translateY(-50%);
+}
+
+.fish-eye{
+  position:absolute;
+  right:12px;
+  top:10px;
+  width:7px;height:7px;
+  border-radius:50%;
+  background:#fff;
+}
+.fish-eye::after{
+  content:"";position:absolute;inset:2px;background:#333;border-radius:50%;
+}
+
+.fish-label{
+  position:absolute;
+  left:50%; top:-30px;
+  transform:translateX(-50%);
+  padding:4px 10px;
+  border-radius:999px;
+  background:rgba(255,255,255,.95);
+  font:600 10px/1.4 system-ui;
+  text-align:center;
+  max-width:260px;
+}
+
+/* Colores */
+.fish:nth-child(1) .fish-body{
+  background:radial-gradient(circle at 30% 30%, #ffe8c1 0, var(--fish-orange) 40%, #ff8a3c 100%);
+}
+.fish:nth-child(1) .fish-tail{background:var(--fish-orange-tail);}
+
+.fish:nth-child(2) .fish-body{
+  background:radial-gradient(circle at 30% 30%, #ffe0f3 0, var(--fish-pink) 45%, #f368a8 100%);
+}
+.fish:nth-child(2) .fish-tail{background:var(--fish-pink-tail);}
+
+.fish:nth-child(3) .fish-body{
+  background:radial-gradient(circle at 30% 30%, #fff9d2 0, var(--fish-yellow) 40%, #f2c542 100%);
+}
+.fish:nth-child(3) .fish-tail{background:var(--fish-yellow-tail);}
+
+.fish:nth-child(4) .fish-body{
+  background:radial-gradient(circle at 30% 30%, #f3e1ff 0, #c6a5ff 40%, #8b6fe8 100%);
+}
+.fish:nth-child(4) .fish-tail{background:#8b6fe8;}
+
+.fish:nth-child(5) .fish-body{
+  background:radial-gradient(circle at 30% 30%, #e0f6ff 0, #6fd5ff 40%, #399acb 100%);
+}
+.fish:nth-child(5) .fish-tail{background:#399acb;}
+
+/* Movimiento de peces */
+.fish:nth-child(1){top:16%; left:-30%;animation:swim-right 28s linear infinite;}
+.fish:nth-child(2){top:32%; left:120%;animation:swim-left 26s linear infinite;}
+.fish:nth-child(3){top:54%; left:-30%;animation:swim-right 30s linear infinite;}
+.fish:nth-child(4){top:70%; left:120%;animation:swim-left 27s linear infinite;}
+.fish:nth-child(5){top:40%; left:-30%;animation:swim-right 32s linear infinite;}
+
+.fish:nth-child(2) .fish-inner,
+.fish:nth-child(4) .fish-inner{
+  transform:scaleX(-1);
+}
+
+@keyframes swim-right{
+  0%{left:-30%;}
+  50%{left:55%;}
+  100%{left:120%;}
+}
+@keyframes swim-left{
+  0%{left:120%;}
+  50%{left:45%;}
+  100%{left:-30%;}
+}
+
+/* -----------------------------------------------------------
+   SOBRE Y CARTA
+   ----------------------------------------------------------- */
+.card-shell{
+  position:relative;
+  width:min(560px, 94vw);
+  height:min(380px, 64svh);
+  perspective:900px;
+  z-index:3;
+}
+.env-back{
+  position:absolute;inset:0;
+  border-radius:18px;
+  background:linear-gradient(145deg,#f5c7d8,#f7d3b5);
+}
+.env-flap{
+  position:absolute;inset:0;
+  border-radius:18px;
+  background:linear-gradient(160deg,#f8d8e6,#fbe1c5);
+  clip-path:polygon(0 0,100% 0,50% 55%);
+  transform-origin:top center;
+  transition:transform .7s ease;
+}
+.card-shell.open .env-flap{
+  transform:rotateX(180deg);
+}
+
+.letter{
+  position:absolute;
+  left:7%;right:7%;
+  bottom:10%;
+  height:80%;
+  background:white;
+  padding:22px;
+  border-radius:16px;
+  overflow:auto;
+  transform:translateY(80%);
+  opacity:0;
+  transition:transform .8s, opacity .8s;
+}
+.card-shell.open .letter{
+  transform:translateY(-4%);
+  opacity:1;
+}
+
+.letter p{
+  font-size:18px;
+  line-height:1.6;
+  margin-bottom:14px;
+}
+
+/* Botón */
+.btn-toggle{
+  padding:11px 26px;
+  border-radius:999px;
+  background:var(--accent);
+  border:none;
+  color:white;
+  font-weight:700;
+  cursor:pointer;
+}
+.btn-toggle:active{transform:scale(.97)}
+
+/* -----------------------------------------------------------
+   MUSIC PLAYER
+   ----------------------------------------------------------- */
+.music-player{
+  position:fixed;
+  bottom:14px;
+  left:50%;
+  transform:translateX(-50%);
+  display:flex;
+  gap:8px;
+  padding:8px 14px;
+  background:rgba(17,35,70,.78);
+  color:white;
+  border-radius:999px;
+  font:500 13px system-ui;
+  z-index:10;
+}
+.music-player button{
+  border:none;
+  background:#F29BB2;
+  border-radius:999px;
+  padding:5px 8px;
+  cursor:pointer;
+}
+.music-player select{
+  background:#0b1c45;
+  color:white;
+  border-radius:999px;
+  padding:3px 6px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- Luz -->
+<div class="sun-rays"><div class="sun-rays-inner" id="sunRays"></div></div>
+
+<!-- Brillitos -->
+<div class="sparkles">
+  <span></span><span></span><span></span><span></span>
+  <span></span><span></span><span></span><span></span>
+</div>
+
+<!-- Burbujas -->
+<div class="bubbles">
+  <span></span><span></span><span></span><span></span>
+  <span></span><span></span><span></span><span></span>
+</div>
+
+<!-- Algas -->
+<div class="seaweed">
+  <div class="weed"></div><div class="weed"></div><div class="weed"></div>
+  <div class="weed"></div><div class="weed"></div><div class="weed"></div>
+</div>
+
+<!-- PECES CON FRASES -->
+<div class="fishes">
+
+  <div class="fish">
+    <div class="fish-inner">
+      <div class="fish-body"></div>
+      <div class="fish-tail"></div>
+      <div class="fish-eye"></div>
+    </div>
+    <div class="fish-label">
+      ¿Acaso eres el sol? Porque todos los días te veo, pero no estás cerca de mí, y brillas como ninguna otra estrella.
+    </div>
+  </div>
+
+  <div class="fish">
+    <div class="fish-inner">
+      <div class="fish-body"></div>
+      <div class="fish-tail"></div>
+      <div class="fish-eye"></div>
+    </div>
+    <div class="fish-label">
+      Si fueras un taco, serías de los 2x1, porque me emociono al verte.
+    </div>
+  </div>
+
+  <div class="fish">
+    <div class="fish-inner">
+      <div class="fish-body"></div>
+      <div class="fish-tail"></div>
+      <div class="fish-eye"></div>
+    </div>
+    <div class="fish-label">
+      Me gustas tanto como la pizza napolitana &lt;3
+    </div>
+  </div>
+
+  <div class="fish">
+    <div class="fish-inner">
+      <div class="fish-body"></div>
+      <div class="fish-tail"></div>
+      <div class="fish-eye"></div>
+    </div>
+    <div class="fish-label">
+      No me dejes de querer, Jatsumi &lt;3
+    </div>
+  </div>
+
+  <div class="fish">
+    <div class="fish-inner">
+      <div class="fish-body"></div>
+      <div class="fish-tail"></div>
+      <div class="fish-eye"></div>
+    </div>
+    <div class="fish-label">
+      Si miro tus ojos me enamoro de ti, sin haber visto bien tus pupilas, miau.
+    </div>
+  </div>
+
+</div>
+
+<!-- SOBRE -->
+<div class="card-shell" id="cardShell">
+
+  <div class="env-back"></div>
+  <div class="env-flap"></div>
+
+  <!-- CARTA -->
+  <div class="letter">
+
+    <p>Dear Jatsumi 💕</p>
+
+    <p>
+      Espero que te encuentres bien mientras lees esta pequeña carta.  
+      Sé cuánto te gustan los peces y decidí poner un montón…
+    </p>
+
+    <p>
+      Bueno, quería decirte que te aprecio mucho. Desde que te conocí eres
+      una persona que vale muchísimo la pena conocer. Aunque no seamos nada,
+      yo sé que te quiero mucho.  
+      Me tratas súper bien, aunque no sueles ser nada migajera, y también
+      me encanta cuando me envías un buen de reels; los veo en mi trayecto
+      a mi casa después de la escuela y siempre me alegras el día…
+    </p>
+
+    <p>
+      Realmente te hice esta carta porque te noté un poco triste, y no quiero
+      que estés así. Aunque no me quieras contar, te respeto muchísimo.
+      Sé que lo que puedes estar pasando no debe ser fácil y no quiero
+      presionarte con nada.  
+      Te quiero &lt;3
+    </p>
+
+    <p>
+      Podría decir mil cosas que quiero de ti, pero no quiero hacer esta
+      carta tan larga. Solo espero poder seguir estando a tu lado,
+      aunque ni nos podamos ver.
+    </p>
+
+    <p class="firma">Te amok ❤️</p>
+
+  </div>
+</div>
+
+<button class="btn-toggle" id="toggleBtn">Abrir carta</button>
+
+<!-- REPRODUCTOR -->
+<div class="music-player" id="musicPlayer">
+  <span id="trackTitle">Love Dream (Sueño de Amor)</span>
+  <button id="prevTrack">⏮</button>
+  <button id="playPause">⏯</button>
+  <button id="nextTrack">⏭</button>
+  <select id="trackSelect"></select>
+</div>
+
+<audio id="bgMusic" preload="auto" loop playsinline></audio>
+
+<script>
+/* Música + apertura de carta */
+
+const card = document.getElementById('cardShell');
+const btn = document.getElementById('toggleBtn');
+const music = document.getElementById('bgMusic');
+
+const tracks = [
+  { title: 'Love Dream (Sueño de Amor)',         file: 'musiquita/love_dream.mp3' },
+  { title: 'Círculo de Amor – El Gran Silencio', file: 'musiquita/circulo_de_amor.mp3' },
+  { title: 'No Other Heart – Mac DeMarco',       file: 'musiquita/no_other_heart.mp3' }
+];
+
+let current = 0;
+
+/* Cargar pista */
+function loadTrack(i){
+  current = (i + tracks.length) % tracks.length;
+  music.src = tracks[current].file;
+  document.getElementById('trackTitle').textContent = tracks[current].title;
+  document.getElementById('trackSelect').value = current;
+}
+
+loadTrack(0);
+
+/* Llenar lista */
+document.getElementById('trackSelect').innerHTML =
+  tracks.map((t,i)=>`<option value="${i}">${t.title}</option>`).join("");
+
+document.getElementById('prevTrack').onclick = () => {
+  loadTrack(current - 1);
+  music.play();
+};
+document.getElementById('nextTrack').onclick = () => {
+  loadTrack(current + 1);
+  music.play();
+};
+document.getElementById('trackSelect').onchange = e => {
+  loadTrack(+e.target.value);
+  music.play();
+};
+document.getElementById('playPause').onclick = () => {
+  if (music.paused) music.play();
+  else music.pause();
+};
+
+/* Abrir/cerrar carta */
+btn.onclick = ()=>{
+  card.classList.toggle('open');
+  btn.textContent = card.classList.contains('open') ? "Cerrar carta" : "Abrir carta";
+  if(card.classList.contains('open')) music.play();
+  else music.pause();
+}
+
+/* Luz sigue el mouse */
+document.addEventListener("mousemove", e=>{
+  const sun = document.getElementById("sunRays");
+  const x = (e.clientX / window.innerWidth - 0.5) * 20;
+  const y = (e.clientY / window.innerHeight - 0.5) * 20;
+  sun.style.transform = `translate(${x}px, ${y}px)`;
+});
+</script>
+
+</body>
+</html>
